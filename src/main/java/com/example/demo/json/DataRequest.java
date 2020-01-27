@@ -1,6 +1,5 @@
 package com.example.demo.json;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotEmpty;

@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
+import com.example.demo.enums.Sides;
 import com.example.demo.json.DataRequest;
 import com.example.demo.json.DataResponse;
-import com.example.demo.enums.Sides;
 import javassist.NotFoundException;
 
 

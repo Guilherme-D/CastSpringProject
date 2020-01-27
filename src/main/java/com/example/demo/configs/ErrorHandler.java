@@ -3,16 +3,12 @@ package com.example.demo.configs;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
-
-import java.util.List;
 
 @ControllerAdvice
 public class ErrorHandler {
@@ -37,7 +33,6 @@ public class ErrorHandler {
         exceptionMessageObj.setError(ex.getClass().getCanonicalName());
         exceptionMessageObj.setPath(((ServletWebRequest) request).getRequest().getServletPath());
 
-        // return exceptionMessageObj;
         return new ResponseEntity<>(exceptionMessageObj, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

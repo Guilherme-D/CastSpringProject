@@ -1,7 +1,8 @@
 package com.example.demo.json;
 
-import javax.persistence.*;
-import javax.validation.constraints.Positive;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class DataResponse {

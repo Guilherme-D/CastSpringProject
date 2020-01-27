@@ -1,8 +1,8 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.enums.Sides;
 import com.example.demo.json.DataRequest;
 import com.example.demo.json.DataResponse;
-import com.example.demo.enums.Sides;
 import com.example.demo.repository.Repository;
 import com.example.demo.service.DataService;
 import javassist.NotFoundException;
@@ -43,26 +43,29 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public String validateDiff(Long id) throws NotFoundException {
+        String result = "";
+
         DataResponse dataResponse = this.repository.findById(id).orElseThrow(() -> new NotFoundException("Não foi encontrado dados para o id informado."));
 
         byte[] leftData = Base64.getDecoder().decode(dataResponse.getLeftData().toLowerCase());
         byte[] rightData = Base64.getDecoder().decode(dataResponse.getRightData().toLowerCase());
 
         if(Arrays.equals(leftData,rightData)){
-            return "Documentos "+id+" idênticos.";
+            result = "Documentos "+id+" idênticos.";
 
         }else if(leftData.length != rightData.length){
-            return "Documentos "+id+" com tamanhos diferentes.";
+            result = "Documentos "+id+" com tamanhos diferentes.";
 
         }else{
             for (int i = 0; i < leftData.length; i++) {
                 int position = leftData[i] ^ rightData[i];
                 if (position != 0){
-                    return "Os dados se diferem na posição "+i;
+                    result = "Os dados se diferem na posição "+i;
                 }
             }
         }
-        return "ooops";
+
+        return result;
     }
 
     private Boolean isBase64(String base64){
